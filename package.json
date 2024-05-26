@@ -4,7 +4,9 @@
   "description": "Namaste react from Akshay saini - learning by Ashutosh dubey",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "keywords": [
     "react"
