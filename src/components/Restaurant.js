@@ -1,7 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurants } from "../utils/mock_data";
 
-const Restaurant = () => {
+const Restaurant = ({ restaurants }) => {
   return (
     <div className="res-container">
       {restaurants.map((restaurant) => (
