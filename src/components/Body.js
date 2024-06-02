@@ -5,8 +5,13 @@ import { TOP_RATING_THRESHOLD } from "../utils/contants";
 
 const Body = () => {
   const [listOfRestuarants, setListOfRestuarants] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  const [filteresRestuarants, setFilteredRestuarants] = useState([]);
+
+  console.log("Body render");
   useEffect(() => {
     fetchSwiggyData();
+    console.log("use effect called");
   }, []);
   async function fetchSwiggyData() {
     try {
@@ -23,15 +28,38 @@ const Body = () => {
     }
   }
   function handleOnClick() {
-    let filterData = restaurants.filter((r) => {
+    let filterData = listOfRestuarants.filter((r) => {
       return r.info.avgRating >= TOP_RATING_THRESHOLD;
     });
     setListOfRestuarants(filterData);
   }
+
+  function handleOnChangeSearchValue(e) {
+    setSearchValue(e.target.value);
+  }
+
+  function handleOnClickSearchButton() {
+    console.log("search value", searchValue);
+    const filterList = listOfRestuarants.filter((res) => {
+      return res.info.name.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    setFilteredRestuarants(filterList);
+  }
   return (
     <div className="body-container">
-      <Search handleOnClick={handleOnClick} />
-      <Restaurant restaurants={listOfRestuarants} />
+      <Search
+        handleOnClick={handleOnClick}
+        searchValue={searchValue}
+        handleOnChangeSearchValue={handleOnChangeSearchValue}
+        handleOnClickSearchButton={handleOnClickSearchButton}
+      />
+      <Restaurant
+        restaurants={
+          filteresRestuarants.length === 0
+            ? listOfRestuarants
+            : filteresRestuarants
+        }
+      />
     </div>
   );
 };
