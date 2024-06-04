@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Search from "./Search";
 import Restaurant from "./Restaurant";
 import { TOP_RATING_THRESHOLD } from "../utils/contants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestuarants, setListOfRestuarants] = useState([]);
