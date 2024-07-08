@@ -3,6 +3,7 @@ import Search from "./Search";
 import Restaurant from "./Restaurant";
 import { TOP_RATING_THRESHOLD } from "../utils/contants";
 import { Link } from "react-router-dom";
+import Skeleton from "@mui/material/Skeleton";
 
 const Body = () => {
   const [listOfRestuarants, setListOfRestuarants] = useState([]);
@@ -54,13 +55,21 @@ const Body = () => {
         handleOnChangeSearchValue={handleOnChangeSearchValue}
         handleOnClickSearchButton={handleOnClickSearchButton}
       />
-      <Restaurant
-        restaurants={
-          filteresRestuarants.length === 0
-            ? listOfRestuarants
-            : filteresRestuarants
-        }
-      />
+      {listOfRestuarants.length > 0 ? (
+        <Restaurant
+          restaurants={
+            filteresRestuarants.length === 0
+              ? listOfRestuarants
+              : filteresRestuarants
+          }
+        />
+      ) : (
+        <>
+          <Skeleton variant="rectangular" width={210} height={118} />
+          <Skeleton width={110} />
+          <Skeleton width={210} />
+        </>
+      )}
     </div>
   );
 };
