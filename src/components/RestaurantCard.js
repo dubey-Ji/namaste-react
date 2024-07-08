@@ -7,7 +7,7 @@ const RestaurantCard = ({ restuarantInfo }) => {
     <div className="res-card">
       <img src={CARD_IMAGE_URL} />
       <h4>{name}</h4>
-      <p>{cuisines}</p>
+      <p>{cuisines.join(", ")}</p>
       <h4>{avgRating}</h4>
       <h4>{costForTwo}</h4>
       <h4>{deliveryTime}</h4>
